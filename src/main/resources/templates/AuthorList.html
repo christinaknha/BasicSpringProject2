@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Authors</title>
+</head>
+<body>
+    <h1> Author List</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Author Name</th>
+            <th>Books By Author</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "author : ${authors}">
+                <td th:text = "${author.id}"></td>
+                <td th:text = "${author.name}"></td>
+                <td>
+                        <ul>
+                            <li th:each = "book : ${author.books}">
+                                <span th:text="${book.title}"></span>
+                            </li>
+                        </ul>
+                </td>
+                <td>
+                    <button type="button"><a th:href="@{/authors/update-{id} (id=${author.id})}">Edit </a></button>
+                    <form th:action="@{/authors/{id} (id=${author.id})}" th:method="delete">
+                        <button type="submit">Delete Author</button>
+                    </form>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button">
+        <a th:href="@{/authors/create}">Add Another Author</a>
+    </button>
+
+</body>
+</html>
+
