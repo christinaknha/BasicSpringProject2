@@ -1,0 +1,50 @@
+In order to run the application, user needs to click run on the BasicSpringProject2Application file.
+From there, user can navigate to http://localhost:8080/authors/ which will run the functions from the Author Controller file.
+You can also navigate to http://localhost:8080/books/ which will run the Book Controller file. 
+
+When user get to each site, they will notice an empty table with an "Add Author" or "Add Book" button.
+
+Each of these tables is populated by a function inside of the respective controller called
+listAuthors and listBooks. These functions create a list that pulls from the repective repositories
+and adds the information to the table. 
+
+When user clicks on the "Add Author" button, the page is redirected to http://localhost:8080/authors/create 
+which contains a form asking for author name and book title. Once those fields have been filled in, user 
+will click on "Create". That causes the function createAuthor to run. This function checks the repository to 
+see if the author name already exists. If it does, it adds the book to the list of books the author has written. 
+If not, the function creates a new author and adds the book to that author's list. It then saves the data and 
+redirects the user to http://localhost:8080/authors/. User should now see an instance of data inside the table. 
+If user tries to add the author again with a different book, the table will add a book in the book column on this page. 
+If user adds a different author, another row will be added to the table. User should now see two buttons next to each entry 
+that say "Edit" and "Delete". 
+
+If user clicks on the "Edit" button, it will take the user to  http://localhost:8080/authors/update-{id}, 
+where id is the unique ID key associated with each entry. This will allow users to change the author or book title. 
+User should then click the "Update Author" button and they will get redirected to http://localhost:8080/authors/. User 
+should see the changes made. 
+
+If user clicks on the "Delete" button, the system will check to see if the author name associated with the id matches 
+an author in the repository. If so, it removes all of the books in the book list and deletes the author from the author 
+repository.
+
+If user refreshes http://localhost:8080/books/, they will see the book table has been updated with how many ever instances
+of books the user has added through various authors as separate instances. User can now add a new book if they would like by 
+clicking the "Add Book" button. This will redirect the page to http://localhost:8080/books/create where user will have to fill 
+out a form that ask for book title and book author. Once user has filled out those fields, they click on "Create" which causes 
+the createBook function to run. This function checks to see if the author inputted already exists. if so,  it adds the book to the 
+author's book list in author repository. If not, it creates a new author and adds the book to their list. It then saves the book to 
+the book repository before reidrecting to http://localhost:8080/books/. Similarly to the authors table, users
+will see an "Edit" and "Delete" button next to each book instance. 
+
+If user clicks on the "Edit" button, they will be directed to http://localhost:8080/books/update-{id}, where the system will search 
+bookRepo for an ID that matches the book associated with the button that was clicked. If the book exists, user is able to change 
+book title and book author before clicking "Update Book". User will then be redirected to http://localhost:8080/books/. The table 
+will reflect the changes made. 
+
+If user clicks on the "Delete" button, the system will search bookRepo for a book matching the id associated with the button.
+If the book exists, the author is pulled and the books associated with the author is removed before authorRepo is saved. 
+Once this is done, bookRepo deletes the book from it before redirecting back to http://localhost:8080/books/. The book should 
+no longer be displayed.
+
+Whenever http://localhost:8080/authors/ and http://localhost:8080/books/ are refreshed, it reflects the changes made on the other 
+page. 
